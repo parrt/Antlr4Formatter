@@ -13,6 +13,7 @@
 	<modules>
 		<module>antlr4-formatter</module>
 		<module>antlr4-formatter-standalone</module>
+		<module>antlr4-formatter-coverage</module>
 	</modules>
 
 	<properties>
@@ -25,6 +26,7 @@
 		<junit.version>4.12</junit.version>
 		<assertj.version>3.12.2</assertj.version>
 		<spotless.version>1.17.0</spotless.version>
+		<jacoco.version>0.8.2</jacoco.version>
 	</properties>
 
 	<dependencies>
@@ -128,6 +130,26 @@
 						</format>
 					</formats>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
